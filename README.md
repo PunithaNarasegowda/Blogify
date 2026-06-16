@@ -1,154 +1,158 @@
-# Cantilever-Blog Website
+# Cantilever Blog Website
 
-A full-stack Blog Website built using the MERN stack that allows users to register, log in, and perform CRUD operations on blog posts.
+A full-stack MERN blog platform with user registration, login/logout, and protected CRUD operations for blog posts.
 
----
+## Features
 
-##  Features
+- User registration and login/logout
+- JWT-based authentication
+- Create, read, update, and delete blog posts
+- Protected author-only edit and delete actions
+- Responsive React UI
+- MongoDB database integration with Mongoose
 
-- User Registration
-- User Login & Logout
-- JWT Authentication
-- Create Blog Posts
-- Read/View Blog Posts
-- Update Existing Blogs
-- Delete Blogs
-- Responsive UI
-- MongoDB Database Integration
+## Tech Stack
 
----
+Frontend: React, React Router, Axios, HTML, CSS, JavaScript
 
-##  Tech Stack
+Backend: Node.js, Express
 
-### Frontend
-- React.js
-- React Router DOM
-- Axios
-- HTML5
-- CSS3
-- JavaScript
+Database: MongoDB Atlas or local MongoDB, Mongoose
 
-### Backend
-- Node.js
-- Express.js
+Auth: JSON Web Token, bcryptjs
 
-### Database
-- MongoDB Atlas
-- Mongoose
-
-### Authentication
-- JSON Web Token (JWT)
-- bcryptjs
-
-### Development Tools
-- VS Code
-- Git
-- GitHub
-- Postman
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```
-blog-website/
-│
-├── frontend/
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── App.jsx
-│
+.
 ├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── middleware/
-│   ├── server.js
-│   └── .env
-│
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   ├── index.html
+│   └── vite.config.js
 └── README.md
 ```
 
----
+## Setup Instructions
 
-##  Installation
+### 1. Install dependencies
 
-### Clone Repository
-
-```bash
-git clone https://github.com/yourusername/CANTILEVER.git
-```
-
-### Backend Setup
+From the project root:
 
 ```bash
-cd backend
 npm install
 ```
 
-Start backend server:
+### 2. Create the database
+
+You can use MongoDB Atlas or a local MongoDB instance.
+
+#### Option A: MongoDB Atlas
+
+1. Create a free account at MongoDB Atlas.
+2. Create a new cluster.
+3. Add a database user with read/write access.
+4. Add your IP address to Network Access, or allow access from your current network while testing.
+5. Click **Connect** and choose **Drivers**.
+6. Copy the connection string and replace the placeholders with your username, password, and database name.
+7. Put that string into `backend/.env` as `MONGODB_URI`.
+
+Example:
+
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/cantilever_blog?retryWrites=true&w=majority
+```
+
+#### Option B: Local MongoDB
+
+1. Install MongoDB Community Server.
+2. Start the MongoDB service.
+3. Use a local connection string such as:
+
+```env
+MONGODB_URI=mongodb://127.0.0.1:27017/cantilever_blog
+```
+
+### 3. Configure environment variables
+
+Copy the example files and fill them in:
+
+- `backend/.env.example` to `backend/.env`
+- `frontend/.env.example` to `frontend/.env`
+
+Backend environment values:
+
+```env
+PORT=5000
+MONGODB_URI=your-mongodb-connection-string
+JWT_SECRET=your-long-secret
+CLIENT_URL=http://localhost:5173
+```
+
+Frontend environment values:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+### 4. Run the app
+
+Start the backend:
+
+```bash
+npm run dev --workspace backend
+```
+
+Start the frontend in a second terminal:
+
+```bash
+npm run dev --workspace frontend
+```
+
+Or run both from the root:
 
 ```bash
 npm run dev
 ```
-
----
-
-### Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
----
 
 ## API Endpoints
 
-### Authentication
+### Auth
 
 | Method | Endpoint | Description |
-|----------|----------|-------------|
-| POST | /api/auth/register | Register User |
-| POST | /api/auth/login | Login User |
+| --- | --- | --- |
+| POST | /api/auth/register | Register a user |
+| POST | /api/auth/login | Login a user |
 
-### Blog Operations
+### Posts
 
 | Method | Endpoint | Description |
-|----------|----------|-------------|
-| GET | /api/blogs | Get All Blogs |
-| GET | /api/blogs/:id | Get Single Blog |
-| POST | /api/blogs | Create Blog |
-| PUT | /api/blogs/:id | Update Blog |
-| DELETE | /api/blogs/:id | Delete Blog |
+| --- | --- | --- |
+| GET | /api/posts | Get all blog posts |
+| GET | /api/posts/:id | Get a single post |
+| GET | /api/posts/mine | Get authenticated user posts |
+| POST | /api/posts | Create a post |
+| PUT | /api/posts/:id | Update a post |
+| DELETE | /api/posts/:id | Delete a post |
 
----
+## How It Works
 
-## Screenshots
+1. A user registers with name, email, and password.
+2. The backend hashes the password with bcryptjs and returns a JWT.
+3. The frontend stores the token and user profile in local storage.
+4. Authenticated users can create posts and manage only their own posts.
+5. Public visitors can read all posts and open individual post pages.
 
-### Home Page
-Displays all blog posts in a responsive grid layout.
+## Notes
 
-### Create Blog
-Allows authenticated users to publish blog posts.
-
-### Update Blog
-Users can edit their existing blog posts.
-
-### Delete Blog
-Users can remove their blog posts.
-
----
-
-## Future Improvements
-
-- Search Functionality
-- Categories and Tags
-- Comments System
-- Like and Bookmark Feature
-- Rich Text Editor
-- Image Upload using Cloudinary
-- Dark Mode
+- The project uses React Router for navigation.
+- The backend rejects update and delete requests unless the authenticated user owns the post.
+- The UI is responsive and designed for desktop and mobile.
 
 ---
