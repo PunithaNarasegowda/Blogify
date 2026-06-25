@@ -20,6 +20,26 @@ const Login = () => {
 
   return (
     <div className="auth-shell">
+      <section className="surface auth-intro">
+        <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.78)' }}>
+          Welcome back
+        </p>
+        <h1>Step into your editorial workspace.</h1>
+        <p>
+          Sign in to manage your stories, review the latest audience interest, and keep your publishing cadence polished.
+        </p>
+        <div className="benefit-list">
+          <div className="benefit-item">
+            <strong>Reading-first dashboard</strong>
+          </div>
+          <div className="benefit-item">
+            <strong>Secure publishing controls</strong>
+          </div>
+          <div className="benefit-item">
+            <strong>Editorial-grade presentation</strong>
+          </div>
+        </div>
+      </section>
       <form className="surface auth-card" onSubmit={handleSubmit}>
         <p className="eyebrow">Welcome back</p>
         <h1>Login</h1>

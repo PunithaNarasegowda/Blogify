@@ -35,11 +35,26 @@ const Dashboard = () => {
         <div>
           <p className="eyebrow">Dashboard</p>
           <h1>Hello, {user?.name}</h1>
-          <p>Manage your posts from one place.</p>
+          <p>Manage published stories, draft fresh ideas, and keep your publishing workflow clean.</p>
         </div>
         <Link to="/posts/new" className="primary-button">
           New post
         </Link>
+      </section>
+
+      <section className="dashboard-stats">
+        <div className="surface dashboard-stat">
+          <span className="eyebrow">Published posts</span>
+          <strong>{posts.length.toString().padStart(2, '0')}</strong>
+        </div>
+        <div className="surface dashboard-stat">
+          <span className="eyebrow">Workflow</span>
+          <strong>Editorial</strong>
+        </div>
+        <div className="surface dashboard-stat">
+          <span className="eyebrow">Status</span>
+          <strong>{loading ? 'Syncing' : 'Ready'}</strong>
+        </div>
       </section>
 
       <section>
@@ -62,7 +77,7 @@ const Dashboard = () => {
             ))}
           </div>
         ) : (
-          <div className="surface empty-state">No posts yet. Publish your first article.</div>
+          <div className="surface empty-state">No posts yet. Publish your first article and build the archive.</div>
         )}
       </section>
     </div>

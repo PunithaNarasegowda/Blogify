@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <Navbar />
-      <main className="page-container">{children}</main>
+      <main className="page-container page-stage">{children}</main>
     </div>
   );
 };

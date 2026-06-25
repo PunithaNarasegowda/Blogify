@@ -20,6 +20,26 @@ const Register = () => {
 
   return (
     <div className="auth-shell">
+      <section className="surface auth-intro">
+        <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.78)' }}>
+          Start publishing
+        </p>
+        <h1>Create your writer profile.</h1>
+        <p>
+          Join a premium blogging platform built for long-form storytelling, thoughtful discovery, and strong editorial presentation.
+        </p>
+        <div className="benefit-list">
+          <div className="benefit-item">
+            <strong>Launch featured articles</strong>
+          </div>
+          <div className="benefit-item">
+            <strong>Highlight your author voice</strong>
+          </div>
+          <div className="benefit-item">
+            <strong>Reach a reading-focused audience</strong>
+          </div>
+        </div>
+      </section>
       <form className="surface auth-card" onSubmit={handleSubmit}>
         <p className="eyebrow">Start publishing</p>
         <h1>Create account</h1>
