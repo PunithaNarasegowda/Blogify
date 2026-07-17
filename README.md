@@ -1,4 +1,4 @@
-# Cantilever Blog Website
+# Blog Website
 
 A full-stack MERN blog platform with user registration, login/logout, and protected CRUD operations for blog posts.
 
